@@ -3,6 +3,7 @@ const connectDatabase = require('./database/dbConfig');
 const colors = require('colors');
 const morgan = require('morgan');
 const cors = require("cors");
+const cache = require('memory-cache');
 const app = express();
 const port = 5005;
 const path = require('path');
@@ -20,10 +21,16 @@ app.use('/api/v1', routes); // Use the consolidated routes
 
 
 
-
 //default
 app.get('/', (req, res) => {
-  res.send('Hello, Babsaye Server is Running!');
+  res.send(`Hello, Babsaye Server is Running!`);
+});
+
+
+// Clear cache endpoint
+app.post('/api/v1/clear-cache', (req, res) => {
+  cache.clear(); 
+  res.status(200).send('Cache cleared successfully');
 });
 
 
@@ -31,11 +38,6 @@ app.get('/', (req, res) => {
 app.use((req,res,next)=>{
   res.status(404).json({Message: "route not found"})
 })
-
-//or 
-// app.use('*', function(req, res){
-//     res.status(404).send('what???!')
-//   });
 
 
 //handling server side error
