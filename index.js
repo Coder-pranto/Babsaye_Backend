@@ -23,7 +23,7 @@ app.use('/api/v1', routes); // Use the consolidated routes
 
 //default
 app.get('/', (req, res) => {
-  res.send('hello from simple server :)');
+  res.send('Hello, Babsaye Server is Running!');
 });
 
 
