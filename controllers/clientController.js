@@ -88,7 +88,7 @@ const deleteClient = async (req, res) => {
       fs.unlinkSync(client.image);
     }
 
-    await client.remove();
+    await client.deleteOne(); 
     res.status(200).json({ message: 'Client deleted successfully' });
   } catch (error) {
     res.status(400).json({ message: error.message });

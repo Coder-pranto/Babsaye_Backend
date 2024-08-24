@@ -102,10 +102,10 @@ const deleteSupplier = async (req, res) => {
     }
 
     if (supplier.file) {
-      fs.unlinkSync(supplier.file); // Remove the file if it exists
+      fs.unlinkSync(supplier.file); 
     }
 
-    await supplier.remove();
+    await supplier.deleteOne(); 
     res.status(200).json({ message: 'Supplier deleted successfully' });
   } catch (error) {
     res.status(400).json({ message: error.message });

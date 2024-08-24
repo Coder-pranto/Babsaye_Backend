@@ -19,8 +19,6 @@ app.use('/api/v1/uploads', express.static(path.join(__dirname, 'uploads')));
 app.use('/api/v1', routes); // Use the consolidated routes
 
 
-
-
 //default
 app.get('/', (req, res) => {
   res.send(`Hello, Babsaye Server is Running!`);

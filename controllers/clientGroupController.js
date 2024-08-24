@@ -1,5 +1,4 @@
-// controllers/clientGroupController.js
-const ClientGroup = require('../models/clientGroup'); // Adjust the path as needed
+const ClientGroup = require('../models/clientGroup'); 
 
 // Create a new client group
 exports.createClientGroup = async (req, res) => {

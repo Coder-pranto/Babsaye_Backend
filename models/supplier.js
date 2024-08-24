@@ -48,15 +48,15 @@ const supplierSchema = new mongoose.Schema({
   },
   group: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'SupplierGroup', // Assuming there's a SupplierGroup model
+    ref: 'SupplierGroup', 
   },
   file: {
-    type: String, // Assuming this will store the file path
+    type: String, 
   },
   status: {
     type: String,
-    enum: ['Active', 'Inactive'],
-    default: 'Active',
+    enum: ['active', 'inactive'],
+    default: 'active',
   }
 }, {
   timestamps: true
