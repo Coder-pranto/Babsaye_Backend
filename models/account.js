@@ -1,31 +1,17 @@
 const mongoose = require('mongoose');
 
-const accountSchema = new mongoose.Schema({
-  accountTitle: {
-    type: String,
-    // required: true
+const accountSchema = new mongoose.Schema(
+  {
+    title: { type: String, required: true },
+    initialBalance: { type: Number, required: true },
+    accountNumber: { type: String, required: true, unique: true },
+    contactPerson: { type: String },
+    phoneNumber: { type: String },
+    description: { type: String },
   },
-  initialBalance: {
-    type: Number,
-    default: 0
-  },
-  accountNumber: {
-    type: String,
-    unique: true
-  },
-  contactPerson: {
-    type: String
-  },
-  phoneNumber: {
-    type: String
-  },
-  description: {
-    type: String
+  {
+    timestamps: true,
   }
-}, {
-  timestamps: true
-});
+);
 
-const Account = mongoose.model('Account', accountSchema);
-
-module.exports = Account;
+module.exports = mongoose.model('Account', accountSchema);

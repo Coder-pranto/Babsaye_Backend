@@ -29,11 +29,9 @@ const receiveSchema = new mongoose.Schema({
   },
   paymentMethod: {
     type: String,
-    enum: ['Cash', 'Bank', 'Other'] // Adjust as necessary
+    enum: ['Cash', 'Bank', 'Other']
   },
-  chequeNo: {
-    type: String
-  },
+  moneyReceiptId: { type: String, unique: true },
   bank: {
     type: String
   },
@@ -52,3 +50,6 @@ const receiveSchema = new mongoose.Schema({
 const Receive = mongoose.model('Receive', receiveSchema);
 
 module.exports = Receive;
+
+
+

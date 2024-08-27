@@ -24,7 +24,7 @@ const transferSchema = new mongoose.Schema({
   },
   paymentMethod: {
     type: String,
-    enum: ['Cash', 'Bank', 'Other'] // Adjust as necessary
+    enum: ['Cash', 'Bank', 'Other']
   },
   reference: {
     type: String
