@@ -262,7 +262,7 @@ router.put('/group/:id', async (req, res) => {
 });
 
 
-router.delete('/group/', async (req, res) => {
+router.delete('/group/:id', async (req, res) => {
     try {
     const group = await ProductGroup.findByIdAndDelete(req.params.id);
     if (!group)
