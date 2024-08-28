@@ -21,6 +21,7 @@ const staffRoutes = require('./staffRoutes');
 const staffPaymentRoutes = require('./staffPaymentRoutes');
 const staffSalaryRoutes = require('./staffSalaryRoutes');
 const clientGroupRoutes = require('./clientGroupRoutes');
+const transactionRoutes = require('./transactionRoutes');
 
 // Use user routes
 // router.use('/users', userRoutes);
@@ -32,6 +33,9 @@ router.use('/client-groups', clientGroupRoutes);
 
 // Use account routes
 router.use('/accounts', accountRoutes);
+
+//Use transaction routes
+router.use('/transactions', transactionRoutes);
 
 // Use receive routes
 router.use('/receives', receiveRoutes);

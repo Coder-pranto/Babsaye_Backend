@@ -8,7 +8,7 @@ const transactionSchema = new mongoose.Schema({
     description: { type: String },
     credit: { type: Number, default: 0 },
     debit: { type: Number, default: 0 },
-    balance: { type: Number, required: true },
+    balance: { type: Number, default: 0 },
 });
 
 module.exports = mongoose.model('Transaction', transactionSchema);
