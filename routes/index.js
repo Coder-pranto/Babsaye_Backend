@@ -91,9 +91,9 @@ router.use('/staff-payments', staffPaymentRoutes);
 router.use('/staff-salaries', staffSalaryRoutes);
 
 // Use product routes
-router.use('/product', productRoutes);
+router.use('/products', productRoutes);
 
 // Use product miscellaneous routes
-router.use('/product/misc', productRoutes);
+router.use('/products/misc', productMisc);
 
 module.exports = router;
