@@ -3,35 +3,41 @@ const mongoose = require('mongoose');
 const staffPaymentSchema = new mongoose.Schema({
   month: {
     type: String,
-    required: true
+    required: true,
+    trim: true,
   },
   year: {
     type: Number,
-    required: true
-  },
-  staff: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Staff',
-    required: true
+    required: true,
   },
   account: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Account',
-    required: true
+    required: true,
   },
   amount: {
     type: Number,
-    required: true
+    required: true,
+  },
+  transactionType: {
+    type: String,
+    enum: ['credit', 'debit'], 
+    required: true,
+  },
+  transactionId: {
+    type: String,
+    required: true,
+    unique: true, 
   },
   category: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'ExpenseCategory',
-    required: true
+    required: true,
   },
   createdAt: {
     type: Date,
-    default: Date.now
-  }
+    default: Date.now,
+  },
 });
 
 module.exports = mongoose.model('StaffPayment', staffPaymentSchema);

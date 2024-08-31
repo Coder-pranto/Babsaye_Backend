@@ -12,12 +12,16 @@ const salarySchema = new mongoose.Schema(
       required: true,
     },
     year: {
+      type: String,
+      required: true,
+    },
+    salary: {
       type: Number,
       required: true,
     },
-    amount: {
-      type: Number,
-      required: true,
+    paid: {
+      type: Boolean,
+      default: false,
     },
   },
   {
@@ -28,3 +32,4 @@ const salarySchema = new mongoose.Schema(
 const Salary = mongoose.model('Salary', salarySchema);
 
 module.exports = Salary;
+

@@ -1,11 +1,22 @@
-const router = require('express').Router();
+const express = require('express');
+const router = express.Router();
 const {
-  getAllSalaries,
-  updateSalaries,
+  createOrUpdateSalary,
+  getSalariesByStaff,
+  getSalaryById,
+  deleteSalary,
 } = require('../controllers/staffSalaryController');
 
-router.get('/salaries', getAllSalaries);
+// Create or update salary
+router.post('/', createOrUpdateSalary);
 
-router.post('/salaries', updateSalaries);
+// Get salaries by staff ID
+router.get('/staff/:staffId', getSalariesByStaff);
+
+// Get salary by ID
+router.get('/:id', getSalaryById);
+
+// Delete salary by ID
+router.delete('/:id', deleteSalary);
 
 module.exports = router;

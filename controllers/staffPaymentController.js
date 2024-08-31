@@ -14,7 +14,7 @@ exports.createStaffPayment = async (req, res) => {
 // Get all staff payments
 exports.getStaffPayments = async (req, res) => {
   try {
-    const staffPayments = await StaffPayment.find().populate('staff account category');
+    const staffPayments = await StaffPayment.find().populate('account category');
     res.status(200).json(staffPayments);
   } catch (error) {
     res.status(400).json({ message: error.message });
@@ -24,7 +24,7 @@ exports.getStaffPayments = async (req, res) => {
 // Get a single staff payment by ID
 exports.getStaffPaymentById = async (req, res) => {
   try {
-    const staffPayment = await StaffPayment.findById(req.params.id).populate('staff account category');
+    const staffPayment = await StaffPayment.findById(req.params.id).populate('account category');
     if (!staffPayment) return res.status(404).json({ message: 'Staff Payment not found' });
     res.status(200).json(staffPayment);
   } catch (error) {
