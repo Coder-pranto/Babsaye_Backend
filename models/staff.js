@@ -28,13 +28,13 @@ const staffSchema = new mongoose.Schema(
     educational_qualification: {
       type: String,
     },
-    // salary:{
-    //   type:String
-    // },
+    salary:{
+      type:String
+    },
     role: {
       type: String,
-      required: true,
-      enum: ['Admin', 'User', 'Manager'], // Add more roles as needed
+      enum: ['Admin', 'User', 'Manager'],
+      default:"User"
     },
     permissions: {
       type: [String],

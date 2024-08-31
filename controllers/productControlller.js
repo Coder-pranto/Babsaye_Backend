@@ -1,4 +1,3 @@
-
 const Product = require('../models/products/product');
 
 // Create a new product

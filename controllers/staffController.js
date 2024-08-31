@@ -3,6 +3,7 @@ const Staff = require('../models/staff');
 // Create a new staff member
 exports.createStaff = async (req, res) => {
   try {
+    console.log(req.image);
     const staff = new Staff({
       ...req.body,
       image: req.file ? req.file.path : null

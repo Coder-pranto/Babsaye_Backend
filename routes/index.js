@@ -18,6 +18,8 @@ const moneyReturnRoutes = require('./moneyReturnRoutes');
 const moneyReturnCategoryRoutes = require('./moneyReturnCategoryRoutes');
 const transferRoutes = require('./transferRoutes');
 const staffRoutes = require('./staffRoutes');
+const staffDepartmentRoutes = require('./staffDepartmentRoute');
+const staffDesignationRoutes = require('./staffDesignationRoutes')
 const staffPaymentRoutes = require('./staffPaymentRoutes');
 const staffSalaryRoutes = require('./staffSalaryRoutes');
 const clientGroupRoutes = require('./clientGroupRoutes');
@@ -83,6 +85,12 @@ router.use('/transfers', transferRoutes);
 
 // Use staff routes
 router.use('/staff', staffRoutes);
+
+// Use staff-department routes
+router.use('/staff-department', staffDepartmentRoutes);
+
+// Use staff-designation routes
+router.use('/staff-designation', staffDesignationRoutes);
 
 // Use staff payment routes
 router.use('/staff-payments', staffPaymentRoutes);
