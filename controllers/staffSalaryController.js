@@ -20,6 +20,40 @@ exports.createOrUpdateSalary = async (req, res) => {
   }
 };
 
+// Get salary records by month and year
+exports.getSalariesByMonthAndYear = async (req, res) => {
+  const { month, year } = req.params;
+
+  try {
+    const salaries = await Salary.find({ month, year }).populate('staff');
+    res.status(200).json(salaries);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+};
+
+
+
+// Update the paid status of a salary record
+exports.updateSalaryStatus = async (req, res) => {
+  const { id } = req.params;
+  const { paid } = req.body;
+
+  try {
+    const salaryRecord = await Salary.findById(id);
+    if (!salaryRecord) {
+      return res.status(404).json({ message: 'Salary record not found' });
+    }
+
+    salaryRecord.paid = paid;
+    await salaryRecord.save();
+    res.status(200).json(salaryRecord);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+};
+
+
 // Get salary records by staff member
 exports.getSalariesByStaff = async (req, res) => {
   try {
