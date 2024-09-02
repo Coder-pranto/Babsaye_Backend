@@ -26,6 +26,7 @@ const clientGroupRoutes = require('./clientGroupRoutes');
 const transactionRoutes = require('./transactionRoutes');
 const productRoutes = require('./productRoutes');
 const productMisc = require('./productMisc');
+const attendanceRoutes = require('./attendanceRoutes');
 
 // Use user routes
 // router.use('/users', userRoutes);
@@ -97,6 +98,9 @@ router.use('/staff-payments', staffPaymentRoutes);
 
 // Use staff salary routes
 router.use('/staff-salaries', staffSalaryRoutes);
+
+// Use attendance routes
+router.use('/attendance', attendanceRoutes);
 
 // Use product routes
 router.use('/products', productRoutes);
