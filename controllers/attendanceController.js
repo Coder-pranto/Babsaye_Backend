@@ -53,7 +53,6 @@ exports.getAttendanceByDate = async (req, res) => {
 };
 
 
-
 // Get attendance records by specific month and year
 exports.getStaffsByMonthAndYear = async (req, res) => {
     try {
@@ -78,6 +77,49 @@ exports.getStaffsByMonthAndYear = async (req, res) => {
   };
   
 
+// Get monthly attendance for a staff member
+exports.getMonthlyAttendance = async (req, res) => {
+    try {
+      const { staffId } = req.params;
+      const { month, year } = req.query;
+  
+      if (!month || !year) {
+        return res.status(400).json({ message: 'Month and Year are required' });
+      }
+  
+      // Validate staff existence
+      const staff = await Staff.findById(staffId);
+      if (!staff) {
+        return res.status(404).json({ message: 'Staff member not found' });
+      }
+  
+      const startDate = new Date(year, month - 1, 1);
+      const endDate = new Date(year, month, 0); // Last day of the month
+  
+      const attendanceRecords = await Attendance.find({
+        staff: staffId,
+        date: { $gte: startDate, $lte: endDate },
+      }).sort({ date: 1 });
+  
+      // Calculate totals
+      const totals = {
+        Present: 0,
+        Absent: 0,
+        Late: 0,
+        Leave: 0,
+      };
+  
+      attendanceRecords.forEach(record => {
+        totals[record.status] += 1;
+      });
+  
+      res.status(200).json({ attendanceRecords, totals });
+    } catch (error) {
+      res.status(500).json({ message: 'Server Error', error: error.message });
+    }
+  };
+
+  
 // Get attendance records by staff ID
 exports.getAttendanceByStaff = async (req, res) => {
   try {
@@ -98,48 +140,6 @@ exports.getAttendanceByStaff = async (req, res) => {
     const attendanceRecords = await Attendance.find(query).sort({ date: 1 });
 
     res.status(200).json({ attendanceRecords });
-  } catch (error) {
-    res.status(500).json({ message: 'Server Error', error: error.message });
-  }
-};
-
-// Get monthly attendance for a staff member
-exports.getMonthlyAttendance = async (req, res) => {
-  try {
-    const { staffId } = req.params;
-    const { month, year } = req.query;
-
-    if (!month || !year) {
-      return res.status(400).json({ message: 'Month and Year are required' });
-    }
-
-    // Validate staff existence
-    const staff = await Staff.findById(staffId);
-    if (!staff) {
-      return res.status(404).json({ message: 'Staff member not found' });
-    }
-
-    const startDate = new Date(year, month - 1, 1);
-    const endDate = new Date(year, month, 0); // Last day of the month
-
-    const attendanceRecords = await Attendance.find({
-      staff: staffId,
-      date: { $gte: startDate, $lte: endDate },
-    }).sort({ date: 1 });
-
-    // Calculate totals
-    const totals = {
-      Present: 0,
-      Absent: 0,
-      Late: 0,
-      Leave: 0,
-    };
-
-    attendanceRecords.forEach(record => {
-      totals[record.status] += 1;
-    });
-
-    res.status(200).json({ attendanceRecords, totals });
   } catch (error) {
     res.status(500).json({ message: 'Server Error', error: error.message });
   }
