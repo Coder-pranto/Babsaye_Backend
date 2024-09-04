@@ -27,6 +27,8 @@ const transactionRoutes = require('./transactionRoutes');
 const productRoutes = require('./productRoutes');
 const productMisc = require('./productMisc');
 const attendanceRoutes = require('./attendanceRoutes');
+const userDocumentRoutes = require('./userDocumentRoute')
+const invoiceRoutes = require('./invoiceRoutes');
 
 // Use user routes
 // router.use('/users', userRoutes);
@@ -107,5 +109,12 @@ router.use('/products', productRoutes);
 
 // Use product miscellaneous routes
 router.use('/products/misc', productMisc);
+
+router.use('/documents',userDocumentRoutes);
+
+router.use('/invoices', invoiceRoutes);
+
+const pdfRoutes = require('./pdfRoutes');
+router.use('/printable',pdfRoutes);
 
 module.exports = router;
