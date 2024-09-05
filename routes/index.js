@@ -29,6 +29,8 @@ const productMisc = require('./productMisc');
 const attendanceRoutes = require('./attendanceRoutes');
 const userDocumentRoutes = require('./userDocumentRoute')
 const invoiceRoutes = require('./invoiceRoutes');
+const returnRoutes = require('./returnRoutes');
+
 
 // Use user routes
 // router.use('/users', userRoutes);
@@ -113,6 +115,8 @@ router.use('/products/misc', productMisc);
 router.use('/documents',userDocumentRoutes);
 
 router.use('/invoices', invoiceRoutes);
+
+router.use('/returns', returnRoutes);
 
 const pdfRoutes = require('./pdfRoutes');
 router.use('/printable',pdfRoutes);
