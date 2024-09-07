@@ -4,12 +4,12 @@ const transferSchema = new mongoose.Schema({
   fromAccount: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Account',
-    required: true
+
   },
   toAccount: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Account',
-    required: true
+
   },
   date: {
     type: Date,
@@ -24,13 +24,18 @@ const transferSchema = new mongoose.Schema({
   },
   paymentMethod: {
     type: String,
-    enum: ['Cash', 'Bank', 'Other']
+    enum: ['cash', 'bank','credit', 'other']
   },
   reference: {
     type: String
   },
   tags: {
     type: [String]
+  },
+  transactionType: {  
+    type: String,
+    enum: ['transfer', 'deposit', 'withdraw'],
+    required: true
   }
 }, {
   timestamps: true

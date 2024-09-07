@@ -15,7 +15,7 @@ exports.addReturn = async (req, res) => {
 // Get all returns
 exports.getReturns = async (req, res) => {
     try {
-        const returns = await Return.find();
+        const returns = await Return.find().populate('client account products.product category');
         res.status(200).json(returns);
     } catch (error) {
         res.status(500).json({ error: 'Failed to fetch returns' });
@@ -25,7 +25,7 @@ exports.getReturns = async (req, res) => {
 // Get a specific return by ID
 exports.getReturnById = async (req, res) => {
     try {
-        const returnData = await Return.findById(req.params.id);
+        const returnData = await Return.findById(req.params.id).populate('client account products.product category');
         if (!returnData) {
             return res.status(404).json({ error: 'Return not found' });
         }
