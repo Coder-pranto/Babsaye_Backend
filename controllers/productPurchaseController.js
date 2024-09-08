@@ -4,8 +4,6 @@ const Product = require('../models/products/product');
 
 // Create a new purchase
 exports.createPurchase = async (req, res) => {
-
-
     try {
         const {
             invoiceId, date, supplier, products, discountRate, discountType,
@@ -50,16 +48,17 @@ exports.createPurchase = async (req, res) => {
         res.status(500).json({ message: 'Server error', error });
     }
 };
-
-// Get all purchases
 exports.getAllPurchases = async (req, res) => {
     try {
+        console.log("Fetching purchases");
         const purchases = await Purchase.find().populate('supplier').populate('products.product');
         res.status(200).json({ purchases });
     } catch (error) {
+        console.error('Error fetching purchases:', error.message);
         res.status(500).json({ message: 'Server error', error });
     }
 };
+
 
 // Get a single purchase by ID
 exports.getPurchaseById = async (req, res) => {
@@ -117,7 +116,7 @@ exports.deletePurchase = async (req, res) => {
             return res.status(404).json({ message: 'Purchase not found' });
         }
 
-        await purchase.remove();
+         await Purchase.findByIdAndDelete(req.params.id);
         res.status(200).json({ message: 'Purchase deleted successfully' });
     } catch (error) {
         res.status(500).json({ message: 'Server error', error });

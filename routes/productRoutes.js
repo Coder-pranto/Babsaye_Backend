@@ -14,10 +14,10 @@ router.delete('/:id', productController.deleteProduct);
 
 
 router.post('/purchases', purchaseController.createPurchase); 
-router.get('/purchases', purchaseController.getAllPurchases);
+router.get('/purchases/data', purchaseController.getAllPurchases);
 router.get('/purchases/:id', purchaseController.getPurchaseById);
 router.put('/purchases/:id', purchaseController.updatePurchase);
-router.delete('/purchases/:id', purchaseController.deletePurchase);
+router.delete('/purchases/data/:id', purchaseController.deletePurchase);
 
 
 

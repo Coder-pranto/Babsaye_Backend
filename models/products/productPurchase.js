@@ -10,7 +10,8 @@ const PurchaseSchema = new mongoose.Schema({
             quantity: { type: Number, required: true },
             price: { type: Number, required: true },
         }
-    ],
+    ]
+    ,
     discountRate: { type: Number},
     discountType: { type: String, enum: ['flat', 'percentage'] },
     paymentAmount: { type: Number, required: true },
