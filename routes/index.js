@@ -30,7 +30,8 @@ const attendanceRoutes = require('./attendanceRoutes');
 const userDocumentRoutes = require('./userDocumentRoute')
 const invoiceRoutes = require('./invoiceRoutes');
 const returnRoutes = require('./returnRoutes');
-
+const pdfRoutes = require('./pdfRoutes');
+const paymentRoutes = require('../controllers/paymentController');
 
 // Use user routes
 // router.use('/users', userRoutes);
@@ -118,7 +119,8 @@ router.use('/invoices', invoiceRoutes);
 
 router.use('/returns', returnRoutes);
 
-const pdfRoutes = require('./pdfRoutes');
 router.use('/printable',pdfRoutes);
+
+router.use('/payment',paymentRoutes);
 
 module.exports = router;

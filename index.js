@@ -11,7 +11,17 @@ const routes = require('./routes/index');
 
 
 require("dotenv").config();
-app.use(cors());
+const corsOptions = {
+  origin: 'http://localhost:5173', // Allow the frontend origin
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'], // Explicitly list the methods you want to allow
+  credentials: true, // Allow credentials (cookies, authorization headers)
+  allowedHeaders: ['Content-Type', 'Authorization', 'x-requested-with', 'Origin'], // Headers you want to allow
+  optionsSuccessStatus: 200 // Response for successful OPTIONS requests
+};
+
+app.use(cors(corsOptions));
+app.options('*', cors(corsOptions));
+
 app.use(morgan('tiny'));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
