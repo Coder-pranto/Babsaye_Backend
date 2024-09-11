@@ -113,6 +113,3 @@ exports.deleteTransfer = async (req, res) => {
 
 
 
-
-
-

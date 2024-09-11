@@ -32,6 +32,7 @@ const invoiceRoutes = require('./invoiceRoutes');
 const returnRoutes = require('./returnRoutes');
 const pdfRoutes = require('./pdfRoutes');
 const paymentRoutes = require('../controllers/paymentController');
+const bankAccountRoutes = require('./bankAccountRoutes')
 
 // Use user routes
 // router.use('/users', userRoutes);
@@ -122,5 +123,7 @@ router.use('/returns', returnRoutes);
 router.use('/printable',pdfRoutes);
 
 router.use('/payment',paymentRoutes);
+
+router.use('/bank',bankAccountRoutes);
 
 module.exports = router;
